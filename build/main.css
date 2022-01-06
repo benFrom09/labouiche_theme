@@ -1,0 +1,313 @@
+/*!**********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./sass/index.scss ***!
+  \**********************************************************************************************************/
+@charset "UTF-8";
+html, body {
+  background: #333338;
+  color: #fff;
+  height: 100%;
+}
+
+main {
+  min-height: calc(100vh - 220px);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.page-title {
+  padding: 20px 0 20px 0;
+}
+
+/***************************WP-block**********************/
+.wp-block-columns {
+  padding: 20px 0;
+  margin: 1.5em auto;
+}
+
+/***************************Css menu grand**********************/
+.header_menu {
+  position: relative;
+}
+
+#menu {
+  width: 100%;
+  height: 100px;
+  background: #18181a;
+}
+
+#menu-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  padding-top: 5px;
+}
+
+#trait {
+  background-color: #fff;
+  width: 100%;
+  height: 1px;
+  margin-top: -66px;
+}
+
+#nav-left-link {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100px;
+  line-height: 100px;
+}
+
+#nav-left-link ul {
+  list-style: none;
+  font-family: "Gabriela", serif;
+  font-size: 21px;
+}
+
+#nav-left-link li {
+  display: inline-block;
+  clear: both;
+}
+
+#nav-left-link a {
+  display: block;
+  text-decoration: none;
+  padding: 0 7px 0 7px;
+  color: #fff;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+  -ms-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+#nav-left-link a:hover {
+  background-color: #3b3a3a;
+}
+
+#nav-right-link {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 100px;
+  line-height: 100px;
+}
+
+#nav-right-link ul {
+  list-style: none;
+  font-family: "Gabriela", serif;
+  font-size: 21px;
+}
+
+#nav-right-link li {
+  display: inline-block;
+  clear: both;
+}
+
+#nav-right-link a {
+  display: block;
+  text-decoration: none;
+  padding: 0 7px 0 7px;
+  color: #fff;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+  -ms-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+#nav-right-link a:hover {
+  background-color: #3b3a3a;
+}
+
+/*****************************Fin css Menu grand**********************/
+/*****************************Début css petit menu********************/
+.menu-mobile-container {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  padding-left: 0;
+}
+.menu-mobile-container a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.menu-mobile-container:hover {
+  color: #f1f1f1;
+}
+.menu-mobile-container .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .menu-mobile-container {
+    padding-top: 15px;
+  }
+
+  .menu-mobile-container a {
+    font-size: 18px;
+  }
+}
+#nav-logo-small {
+  width: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#nav-bg-small-menu {
+  background-image: linear-gradient(#18181a, #333338);
+}
+
+/*****************************Fin css petit menu**********************/
+/*****************************Dialog infos box**********************/
+.special-infos {
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+footer {
+  width: 100%;
+  height: 110px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer a {
+  color: #dece8e;
+}
+
+footer a:hover {
+  color: #ffcc00;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-slider {
+  transition: transform 0.3s;
+  transform: translate3d(0, 0, 0);
+}
+
+.carousel:focus, .carousel-slider:focus {
+  outline: none;
+}
+
+.carousel-item-container {
+  float: left;
+}
+
+.carousel-slider::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+._carousel-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 40px 10px;
+  transition: transform 0.3s;
+  transform: translate3d(0, -1px, 0);
+}
+
+._carousel-item:hover {
+  transform: translate3d(0, -10px, 0);
+}
+
+._carousel-item-img {
+  display: block;
+  max-width: 300px;
+  height: auto;
+}
+
+._carousel-item-content {
+  padding: 25px;
+  max-width: 70%;
+}
+._carousel-item-content h2 {
+  color: #dece8e;
+}
+
+.carousel-prev, .carousel-next {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  border-radius: 0.5em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #151616;
+  color: #fff;
+  top: 50%;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+  transform: scale(1.2);
+}
+
+.item-hidden {
+  opacity: 0.3;
+}
+
+.carousel-pagination {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.carousel-pagination-btn {
+  background-color: #000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 3px;
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+
+.c-p-btn-active, .carousel-pagination-btn:hover {
+  transform: scale(1.4);
+}
+
+/*# sourceMappingURL=main.css.map*/

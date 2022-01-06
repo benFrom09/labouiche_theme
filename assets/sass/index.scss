@@ -1,0 +1,196 @@
+
+$background-default-color:#333338;
+$text-default-color:#fff;
+
+$menu-default-background:#18181a;
+$footer-link-color:#dece8e;
+$footer-link-color-hover:#ffcc00;
+$footer-link-underline:none;
+$footer-link-underline-hoover:underline;
+
+
+
+html,body {
+    background:$background-default-color;
+    color:$text-default-color;
+    height:100%;
+}
+main {
+    min-height: calc(100vh - 220px);
+}
+.underline {
+    text-decoration:underline;
+}
+.page-title {
+    padding: 20px 0 20px 0;
+}
+/***************************WP-block**********************/
+
+.wp-block-columns {
+    padding:20px 0;
+    margin:1.5em auto;
+}
+
+
+
+/***************************Css menu grand**********************/
+.header_menu {
+    position:relative;
+}
+#menu{
+    width:100%;
+    height:100px;
+    background:$menu-default-background;
+}
+#menu-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:150px;
+    padding-top:5px;
+}
+#trait{
+    background-color:#fff;
+    width:100%;
+    height:1px;
+    margin-top:-66px;
+}
+#nav-left-link{
+    position:absolute;
+    left:0px;
+    top:0px;
+    height: 100px;
+    line-height: 100px;
+}
+
+#nav-left-link ul {
+    list-style: none;
+    font-family: 'Gabriela', serif;
+    font-size: 21px;
+}
+
+#nav-left-link li {
+    display: inline-block;
+    clear: both;
+}
+
+#nav-left-link a {
+    display: block;
+    text-decoration: none;
+    padding: 0 7px 0 7px;
+    color: #fff;
+    -webkit-transition:.4s ease;
+    -moz-transition:.4s ease;
+    -o-transition:.4s ease;
+    -ms-transition:.4s ease;
+    transition:.4s ease;
+}
+
+#nav-left-link a:hover {
+    background-color:#3b3a3a;
+}
+#nav-right-link{
+    position:absolute;
+    right:0px;
+    top:0px;
+    height: 100px;
+    line-height: 100px;
+}
+
+#nav-right-link ul {
+    list-style: none;
+    font-family: 'Gabriela', serif;
+    font-size: 21px;
+}
+
+#nav-right-link li {
+    display: inline-block;
+    clear: both;
+}
+
+#nav-right-link a {
+    display: block;
+    text-decoration: none;
+    padding: 0 7px 0 7px;
+    color: #fff;
+    -webkit-transition:.4s ease;
+    -moz-transition:.4s ease;
+    -o-transition:.4s ease;
+    -ms-transition:.4s ease;
+    transition:.4s ease;
+}
+
+#nav-right-link a:hover {
+    background-color:#3b3a3a;
+}
+
+/*****************************Fin css Menu grand**********************/
+/*****************************Début css petit menu********************/
+.menu-mobile-container{
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #111;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
+padding-left:0;
+a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    }
+&:hover {
+    color: #f1f1f1;
+    }
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+}
+
+
+
+
+
+#main {
+transition: margin-left .5s;
+padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+.menu-mobile-container {padding-top: 15px;}
+.menu-mobile-container a {font-size: 18px;}
+}
+
+#nav-logo-small{
+width:20%;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+
+#nav-bg-small-menu{
+background-image: linear-gradient(#18181a, #333338);
+}
+/*****************************Fin css petit menu**********************/
+/*****************************Dialog infos box**********************/
+.special-infos {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+@import 'footer.scss';
+@import 'carousel_history.scss';
