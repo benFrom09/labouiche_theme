@@ -40,4 +40,67 @@ if(!function_exists('labouiche_add_favicon')) {
     
     //add_action('wp_head', 'labouiche_add_favicon');
 }
+function labouiche_visit_cpt() {
 
+	/* visit */
+	$labels = array(
+		'name'                => _x('visits', 'Post Type General Name', 'labouiche'),
+		'singular_name'       => _x('visit', 'Post Type Singular Name', 'labouiche'),
+		'menu_name'           => __('visits', 'labouiche'),
+		'name_admin_bar'      => __('visits', 'labouiche'),
+		'parent_item_colon'   => __('Parent Item:', 'labouiche'),
+		'all_items'           => __('All Items', 'labouiche'),
+		'add_new_item'        => __('Add New Item', 'labouiche'),
+		'add_new'             => __('Add New', 'labouiche'),
+		'new_item'            => __('New Item', 'labouiche' ),
+		'edit_item'           => __('Edit Item', 'labouiche'),
+		'update_item'         => __('Update Item', 'labouiche'),
+		'view_item'           => __('View Item', 'labouiche'),
+		'search_items'        => __('Search Item', 'labouiche'),
+		'not_found'           => __('Not found', 'labouiche'),
+		'not_found_in_trash'  => __('Not found in Trash', 'labouiche'),
+	);
+	$rewrite = array(
+		'slug'                => _x('visit', 'visit', 'labouiche'),
+		'with_front'          => true,
+		'pages'               => true,
+		'feeds'               => false,
+	);
+	$args = array(
+		'label'               => __('visit', 'labouiche'),
+		'description'         => __('visits', 'labouiche'),
+		'labels'              => $labels,
+		'supports'            => array('title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields'),
+		'taxonomies'          => array('visit_type'),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+		'menu_icon'           => 'dashicons-admin-home',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'query_var'           => 'visit',
+		'rewrite'             => $rewrite,
+		'capability_type'     => 'page',
+	);
+	register_post_type('visit', $args);	
+}
+
+add_action('init', 'labouiche_visit_cpt', 10);
+/*
+function labouiche_add_custom_post_types($query) {
+   
+    //var_dump(is_page_template( $template ));wp_die();
+    if ( is_front_page() && $query->is_main_query() ) {
+        var_dump('TEMPLTE');wp_die();
+        $query->set( 'post_type', array('post','page', 'visit' ) );
+    }
+    return $query;
+}
+add_action('pre_get_posts', 'labouiche_add_custom_post_types');
+*/

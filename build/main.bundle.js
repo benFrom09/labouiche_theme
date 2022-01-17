@@ -2,6 +2,152 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/modules/App.js":
+/*!***************************!*\
+  !*** ./js/modules/App.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carousel */ "./js/modules/carousel.js");
+
+
+class App {
+  constructor() {
+    //track state of application like current width ...
+    this.state = {
+      is_mobile: false,
+      screen: {
+        width: 0,
+        height: 0
+      },
+      carousel: null
+    };
+    this.UI = {
+      //SELECTORS
+      //navbar
+      mobile_nav: document.getElementById("menu-mobile") ?? null,
+      open_nav_btn: document.querySelector('#nav-bg-small-menu span') ?? null,
+      close_nav_btn: document.querySelector('#menu-mobile a.closebtn') ?? null,
+      //carousel
+      carousel_container: document.querySelector('.carousel-container') ?? null,
+      //virtual visit 
+      l_map_container: document.querySelector('.labouiche-map-container') ?? null,
+      //labouiche_custom_post_type_element
+      l_cpt_visit: document.querySelector('.cpt_visit') ?? null,
+      points: document.querySelectorAll('img.point') ?? null,
+      items_to_show: document.querySelectorAll('.visit_cpt_item_container') ?? null
+    };
+    this.open_navbar = this.open_navbar.bind(this);
+    this.close_navbar = this.close_navbar.bind(this);
+  }
+
+  init() {
+    this.update();
+    const {
+      open_nav_btn,
+      close_nav_btn,
+      l_map_container,
+      l_cpt_visit,
+      points,
+      items_to_show,
+      carousel_container
+    } = this.UI;
+    const {
+      is_mobile
+    } = this.state;
+
+    if (open_nav_btn !== null) {
+      open_nav_btn.addEventListener('click', this.open_navbar);
+    }
+
+    if (close_nav_btn !== null) {
+      close_nav_btn.addEventListener('click', this.close_navbar);
+    } //VIRTUAL VISIT
+
+
+    if (l_map_container !== null && l_cpt_visit.childElementCount > 0) {
+      this.virtual_visit_show_location(points, items_to_show);
+    }
+
+    if (carousel_container !== null) {
+      if (!is_mobile) {
+        this.setCarousel(carousel_container);
+      }
+    }
+  }
+  /**
+   * Update app current state
+   * 
+   * @returns Object
+   */
+
+
+  update() {
+    let {
+      is_mobile,
+      screen
+    } = this.state;
+    screen.width = window.innerWidth;
+    screen.height = window.innerHeight;
+    is_mobile = screen.width < 1024 ? true : false;
+    return Object.assign(this.state, {
+      screen,
+      is_mobile
+    });
+  }
+
+  close_navbar() {
+    const {
+      mobile_nav
+    } = this.UI;
+    mobile_nav.style.width = "0";
+  }
+
+  open_navbar() {
+    const {
+      mobile_nav
+    } = this.UI;
+    mobile_nav.style.width = "250px";
+  }
+
+  virtual_visit_show_location(points = NodeList, itemsToShow = NodeList) {
+    points.forEach(point => {
+      point.addEventListener('click', e => {
+        const id = e.target.dataset.id;
+        Array.from(itemsToShow).find(el => {
+          if (el.dataset.id == id) {
+            el.style.opacity = 1;
+          } else {
+            el.style.opacity = 0;
+          }
+        });
+      });
+    });
+  }
+
+  setCarousel(element) {
+    if (this.state.carousel === null) {
+      this.state.carousel = new _carousel__WEBPACK_IMPORTED_MODULE_0__["default"](element);
+    }
+  }
+
+  destroyCarousel() {
+    if (this.state.carousel !== null) {
+      this.state.carousel.destroy();
+      this.state.carousel = null;
+    }
+  }
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
 /***/ "./js/modules/carousel.js":
 /*!********************************!*\
   !*** ./js/modules/carousel.js ***!
@@ -27,7 +173,8 @@ class Carousel {
    * @param {Boolean} options.infinite set infinite slide
    */
   constructor(container, options = {}) {
-    this.container = container; //assing defaul value to options object
+    this.container = container;
+    console.log(this.container); //assing defaul value to options object
 
     this.options = Object.assign({}, {
       slidesToScroll: 1,
@@ -39,7 +186,7 @@ class Carousel {
     }, options);
     if (this.options.loop && this.options.infinite) throw new Error("Cannot set to true loop and infinite at the same time"); //keep track of container children at the time 
 
-    let childrens = [].slice.call(this.container.children);
+    this.childrens = [].slice.call(this.container.children);
     this.current = 0;
     this.index = 0;
     this.isMobile = false;
@@ -68,7 +215,10 @@ class Carousel {
     this.container.appendChild(this.root);
     this.eventCallback = []; //replace slide item into the slider container
 
-    this.items = childrens.map(item => {
+    this.originalNodes = [];
+    this.items = this.childrens.map(item => {
+      //keep a copy of original node;
+      this.originalNodes.push(item);
       let carouselItemContainer = (0,_createHTML__WEBPACK_IMPORTED_MODULE_0__.createHTML)({
         el: "div",
         attributes: {
@@ -81,7 +231,7 @@ class Carousel {
 
     if (this.options.infinite === true) {
       this.offset = this.options.slidesToShow + this.options.slidesToScroll;
-      if (this.offset > childrens.length) throw new Error("il n\ya pas assez de slide dans le carousel");
+      if (this.offset > this.childrens.length) throw new Error("il n\ya pas assez de slide dans le carousel");
       this.items = [...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)), ...this.items, ...this.items.slice(0, this.offset).map(item => item.cloneNode(true))];
       this.goTo(this.offset);
     }
@@ -260,7 +410,11 @@ class Carousel {
   }
 
   destroy() {
-    this.items = null;
+    const nodes = this.originalNodes;
+    this.container.innerHTML = '';
+    nodes.forEach(node => {
+      this.container.appendChild(node);
+    });
   }
 
   onAddEvent(cb) {
@@ -395,8 +549,6 @@ function createHTML(params = {}, cb) {
 
 
   if (_params.parent != null || _params.parent != undefined) {
-    console.log(_params.parent);
-
     if (_params.parent === "") {
       return;
     }
@@ -489,25 +641,25 @@ var __webpack_exports__ = {};
   \*********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/index.scss */ "./sass/index.scss");
-/* harmony import */ var _modules_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/carousel */ "./js/modules/carousel.js");
+/* harmony import */ var _modules_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/App */ "./js/modules/App.js");
+/* harmony import */ var _modules_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/carousel */ "./js/modules/carousel.js");
 
 
-const mobile_nav = document.getElementById("menu-mobile");
 
-function openNav() {
-  mobile_nav.style.width = "250px";
-}
+const app = new _modules_App__WEBPACK_IMPORTED_MODULE_1__["default"]();
+app.init();
+window.addEventListener('resize', () => {
+  let state = app.update(); //history carousel
 
-function closeNav() {
-  mobile_nav.style.width = "0";
-}
+  if (app.UI.carousel_container !== null) {
+    if (state.is_mobile) {
+      app.destroyCarousel();
+    } else {
+      app.setCarousel(app.UI.carousel_container);
+    }
+  } //code
 
-document.querySelector('#nav-bg-small-menu span').addEventListener('click', openNav);
-document.querySelector('#menu-mobile a.closebtn').addEventListener('click', closeNav);
-
-if (document.querySelector('.carousel-container') !== null) {
-  const carousel = new _modules_carousel__WEBPACK_IMPORTED_MODULE_1__["default"](document.querySelector('.carousel-container'));
-}
+});
 })();
 
 /******/ })()

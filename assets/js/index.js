@@ -1,18 +1,25 @@
 import '../sass/index.scss';
+import App from './modules/App';
 import Carousel from './modules/carousel';
 
-const mobile_nav =  document.getElementById("menu-mobile");
-function openNav() {
-   mobile_nav.style.width = "250px";
-}
 
-function closeNav() {
-    mobile_nav.style.width = "0";
-}
 
-document.querySelector('#nav-bg-small-menu span').addEventListener('click',openNav);
-document.querySelector('#menu-mobile a.closebtn').addEventListener('click',closeNav);
+const app = new App();
+app.init();
 
-if(document.querySelector('.carousel-container')!== null) {
-    const carousel = new Carousel(document.querySelector('.carousel-container'));
-}
+
+window.addEventListener('resize',() => {
+    let state = app.update();
+    //history carousel
+    if(app.UI.carousel_container !== null) {
+        if(state.is_mobile) {
+            app.destroyCarousel();   
+        } else {
+            app.setCarousel(app.UI.carousel_container);
+        }
+    }
+
+    //code
+   
+    
+});

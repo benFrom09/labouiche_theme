@@ -1,3 +1,11 @@
+.carousel-container {
+    border:4px solid;
+}
+@media screen and(min-width:992px) {
+    .carousel-container {
+        transform:translateY(calc(50% - 60px));
+    }
+}
 .carousel {
     position:relative;
     overflow: hidden;
@@ -23,7 +31,7 @@
 }
 ._carousel-item {
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     align-items: center;
     margin:40px 10px;
     transition: transform 0.3s;
@@ -102,4 +110,10 @@
 
 .c-p-btn-active,.carousel-pagination-btn:hover {
     transform:scale(1.4);
+}
+
+@media screen and (min-width:765px) {
+    ._carousel-item {
+        flex-direction:row;
+    }
 }

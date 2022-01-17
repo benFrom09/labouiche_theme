@@ -1,0 +1,14 @@
+main.boutique {
+    display:flex;
+    justify-content: center;
+    background:white;
+    color:#222;
+    #main-content {
+        width:75%;
+        padding:1em;
+    }
+    aside.sidebar {
+        width:calc(25% - 20px);
+        margin-left:20px;
+    }
+}

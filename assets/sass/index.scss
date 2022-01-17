@@ -24,13 +24,35 @@ main {
 .page-title {
     padding: 20px 0 20px 0;
 }
+input {
+    max-width:100%;
+}
 /***************************WP-block**********************/
+@media screen and (min-width:992px) {
+    .home {
+        figure.wp-block-embed {
+            width:50%;
+            border-radius:6px;
+        }
+    }
+}
+@media screen and (max-width:1200px) {
+    .wp-block-columns {
+        display:block;
+    }
+    .wp-block-column:not(:first-child) {
+        margin-left: 0;
+    }
+}
 
 .wp-block-columns {
     padding:20px 0;
     margin:1.5em auto;
 }
-
+/***************************************************************/
+#wds_container1_0 #wds_container2_0 .wds_left-ico_0, #wds_container1_0 #wds_container2_0 .wds_right-ico_0 {
+    color:#e9ba31!important;
+}
 
 
 /***************************Css menu grand**********************/
@@ -194,3 +216,5 @@ background-image: linear-gradient(#18181a, #333338);
 
 @import 'footer.scss';
 @import 'carousel_history.scss';
+@import 'visit.scss';
+@import 'woocommerce-custom.scss';

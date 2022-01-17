@@ -17,21 +17,19 @@
                 <h1 class="page-title underline">
                     <?php the_title(); ?>
                 </h1>
-            </div>
-            <!-- carousel-container -->
-            <div class="carousel-container">
-               <?php Labouiche_Theme_Class::labouiche_display_carousel_from_acf();?>
-                <!-- carousel-container-->
-            </div>
-            <!-- row -->
-        </div>
+            </div>      
+        </div><!-- row -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="post-content">
-                    <?php the_content(); ?>
+                <div class="d-none d-md-none d-lg-block d-xl-block">
+                    <?php require_once 'partials/visit-wide.php' ?>
+                </div>
+                <div class="d-block d-sm-block d-md-block d-lg-none d-xl-none">
+                    <section class="timeline">
+                        <?php the_content(); ?>
+                    </section>
                 </div>
             </div>
-
         </div>
 
     </article><!-- #post-<?php the_ID(); ?> -->

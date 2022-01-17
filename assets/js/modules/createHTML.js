@@ -164,7 +164,6 @@
     //append element
     //console.log(_params.parent);
     if (_params.parent != null || _params.parent != undefined) {
-      console.log(_params.parent);
       if (_params.parent === "") {
         return;
       }
